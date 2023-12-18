@@ -1,7 +1,8 @@
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 
 export default function Album() {
   const headersList = headers();
+  const cookiesList = cookies();
 
   return (
     <div>
@@ -9,6 +10,10 @@ export default function Album() {
       <p>List of headers:</p>
       <pre>
         {JSON.stringify(headersList, null, 2 )}
+      </pre>
+      <p>List of cookies:</p>
+      <pre>
+        {JSON.stringify(cookiesList, null, 2 )}
       </pre>
     </div>
   )
