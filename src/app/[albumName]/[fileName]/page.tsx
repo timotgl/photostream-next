@@ -1,4 +1,9 @@
-export default function Photo({ params: { albumName, fileName } }) {
+interface PhotoRouteParams {
+  albumName: string;
+  fileName: string;
+}
+
+export default function Photo({ params: { albumName, fileName } }: { params: PhotoRouteParams}) {
   return (
     <div>
       <h2>[fileName] route</h2>
