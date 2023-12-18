@@ -1,12 +1,8 @@
-import { headers } from "next/headers";
-
-export default function Album() {
-  const headersList = headers();
-  const albumName = headersList.get('x-album-name');
+export default function Album({ params: { albumName } }) {
   return (
     <div>
-      <h1>This is the [albumName] route&apos;s page component!</h1>
-      <p>Album name: {albumName}</p>
+      <h1>[albumName] route</h1>
+      <p>albumName: {albumName}</p>
     </div>
   )
 };
