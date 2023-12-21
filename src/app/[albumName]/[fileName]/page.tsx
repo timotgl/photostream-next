@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import type { PhotoItem } from '../interfaces';
 import styles from './page.module.css'
@@ -6,6 +7,19 @@ import styles from './page.module.css'
 interface PhotoRouteParams {
   albumName: string;
   fileName: string;
+}
+
+export async function generateMetadata(
+  { params: { albumName, fileName } }: { params: PhotoRouteParams}
+): Promise<Metadata> {
+  // Fetch photo details
+  const albumMetaDataUrl = `https://timotaglieber.de/photos/albums/${albumName}/album.json`;
+  const photos: Array<PhotoItem> = await (await fetch(albumMetaDataUrl)).json();
+  const photoItem = photos.find(item => item.file === fileName);
+
+  return {
+    title: photoItem?.title
+  }
 }
 
 export default async function Photo({ params: { albumName, fileName } }: { params: PhotoRouteParams}) {
