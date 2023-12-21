@@ -1,0 +1,13 @@
+.PhotoContainer {
+
+}
+
+.PhotoDetails {
+  position: absolute;
+  left: 40px;
+  bottom: 30px;
+}
+
+.Photo {
+  object-fit: contain;
+}
