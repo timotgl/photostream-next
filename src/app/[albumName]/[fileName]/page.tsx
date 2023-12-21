@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 
-import type { PhotoItem } from '../interfaces';
+import fetchAlbum from '../fetchAlbum';
 import styles from './page.module.css'
 
 interface PhotoRouteParams {
@@ -12,9 +12,7 @@ interface PhotoRouteParams {
 export async function generateMetadata(
   { params: { albumName, fileName } }: { params: PhotoRouteParams}
 ): Promise<Metadata> {
-  // Fetch photo details
-  const albumMetaDataUrl = `https://timotaglieber.de/photos/albums/${albumName}/album.json`;
-  const photos: Array<PhotoItem> = await (await fetch(albumMetaDataUrl)).json();
+  const photos = await fetchAlbum(albumName);
   const photoItem = photos.find(item => item.file === fileName);
 
   return {
@@ -25,10 +23,7 @@ export async function generateMetadata(
 export default async function Photo({ params: { albumName, fileName } }: { params: PhotoRouteParams}) {
   // TODO: derive screen width from user agent header with Next.js middleware
   const screenWidth = '3840';
-
-  // Fetch photo details
-  const albumMetaDataUrl = `https://timotaglieber.de/photos/albums/${albumName}/album.json`;
-  const photos: Array<PhotoItem> = await (await fetch(albumMetaDataUrl)).json();
+  const photos = await fetchAlbum(albumName);
   const photoItem = photos.find(item => item.file === fileName);
 
   const photoUrl = `https://timotaglieber.de/photos/albums/${albumName}/${screenWidth}/${fileName}`;

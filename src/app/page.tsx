@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-const DEFAULT_ALBUM_NAME = 'highlights';
+import { DEFAULT_ALBUM_NAME } from './constants';
 
 export default function Home() {
   redirect(`/${DEFAULT_ALBUM_NAME}`);
