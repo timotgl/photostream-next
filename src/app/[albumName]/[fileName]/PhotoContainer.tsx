@@ -7,9 +7,10 @@ import type { PhotoItem} from '../interfaces';
 import {BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K} from '../../constants';
 import Counter from './Counter';
 
-import styles from "./PhotoContainer.module.css";
-import PhotoDetails from "@/app/[albumName]/[fileName]/PhotoDetails";
-import NavigationHelp from "@/app/[albumName]/[fileName]/NavigationHelp";
+import styles from './PhotoContainer.module.css';
+import PhotoDetails from './PhotoDetails';
+import NavigationHelp from './NavigationHelp';
+import useArrowKeyNavigation from './navigation/useArrowKeyNavigation';
 
 interface Props {
   albumName: string;
@@ -41,6 +42,8 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
       setCurrentIndex(0);
     }
   }, [currentIndex, album.length]);
+
+  useArrowKeyNavigation(showPreviousPhoto, showNextPhoto)
 
   useEffect(() => {
     window.history.pushState({ albumName, fileName: photoItem.file }, '', `/${albumName}/${photoItem.file}`)
