@@ -1,0 +1,7 @@
+.Counter {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.15em;
+}
