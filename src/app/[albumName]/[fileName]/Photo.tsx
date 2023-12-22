@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import type { PhotoItem} from '../interfaces';
+import { BASE_URL, PHOTO_WIDTH_4K } from '../../constants';
 import Image from "next/image";
 import styles from "./Photo.module.css";
 
@@ -19,31 +20,29 @@ export default function Photo({ albumName, album, initialFileName }: Props) {
   const photoItem = album[currentIndex];
 
   // TODO: derive screen width from user agent header with Next.js middleware
-  const screenWidth = '3840';
+  const currentPhotoUrl = `${BASE_URL}/${albumName}/${PHOTO_WIDTH_4K}/${photoItem.file}`;
 
-  const photoUrl = `https://timotaglieber.de/photos/albums/${albumName}/${screenWidth}/${photoItem.file}`;
-
-  const showPreviousImage = () => {
+  const showNextPhoto = useCallback(() => {
     if (currentIndex === 0 ) {
       setCurrentIndex(album.length - 1);
     } else {
       setCurrentIndex(currentIndex - 1);
     }
-  };
+  }, [currentIndex, album.length]);
 
-  const showNextImage = () => {
+  const showPreviousPhoto = useCallback(() => {
     if ((currentIndex + 1) < album.length ) {
       setCurrentIndex(currentIndex + 1);
     } else {
       setCurrentIndex(0);
     }
-  };
+  }, [currentIndex, album.length]);
 
   return (
     <div className={styles.PhotoContainer}>
       <Image
         className={styles.Photo}
-        src={photoUrl}
+        src={currentPhotoUrl}
         quality={100}
         alt={photoItem?.title || ''}
         fill
@@ -54,8 +53,8 @@ export default function Photo({ albumName, album, initialFileName }: Props) {
         <p>{photoItem?.location}</p>
         <p>{photoItem?.date}</p>
         <p>{photoItem?.caption}</p>
-        <button onClick={showPreviousImage}>previous</button>
-        <button onClick={showNextImage}>next</button>
+        <button onClick={showNextPhoto}>next</button>
+        <button onClick={showPreviousPhoto}>previous</button>
       </div>
     </div>)
 };
