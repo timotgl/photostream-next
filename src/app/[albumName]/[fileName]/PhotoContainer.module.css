@@ -1,0 +1,8 @@
+.PhotoContainer {
+
+}
+
+
+.Photo {
+  object-fit: contain;
+}

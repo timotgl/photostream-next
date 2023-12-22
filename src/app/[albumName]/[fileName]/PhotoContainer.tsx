@@ -1,13 +1,13 @@
 'use client'
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
 import type { PhotoItem} from '../interfaces';
 import {BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K} from '../../constants';
 import Counter from './Counter';
 
-import styles from "./Photo.module.css";
+import styles from "./PhotoContainer.module.css";
 import PhotoDetails from "@/app/[albumName]/[fileName]/PhotoDetails";
 import NavigationHelp from "@/app/[albumName]/[fileName]/NavigationHelp";
 
@@ -17,7 +17,7 @@ interface Props {
   initialFileName: string;
 };
 
-export default function Photo({ albumName, album, initialFileName }: Props) {
+export default function PhotoContainer({ albumName, album, initialFileName }: Props) {
   const initialIndex = album.findIndex(item => item.file === initialFileName);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -41,6 +41,10 @@ export default function Photo({ albumName, album, initialFileName }: Props) {
       setCurrentIndex(0);
     }
   }, [currentIndex, album.length]);
+
+  useEffect(() => {
+    window.history.pushState({ albumName, fileName: photoItem.file }, '', `/${albumName}/${photoItem.file}`)
+  }, [albumName, photoItem]);
 
   return (
     <div className={styles.PhotoContainer}>

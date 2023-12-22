@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import fetchAlbum from '../fetchAlbum';
-import InteractivePhoto from './Photo';
+import InteractivePhoto from './PhotoContainer';
 
 interface PhotoRouteParams {
   albumName: string;
