@@ -14,6 +14,8 @@ export async function generateMetadata(
   const photos = await fetchAlbum(albumName);
   const photoItem = photos.find(item => item.file === fileName);
 
+  // TODO: this does not work if the navigation is used in PhotoContainer
+  // find a way to change the title tag somehow
   return {
     title: photoItem?.title
   }
