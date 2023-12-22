@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import Image from 'next/image';
 
 import type { PhotoItem} from '../interfaces';
@@ -8,6 +8,8 @@ import {BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K} from '../../constants';
 import Counter from './Counter';
 
 import styles from "./Photo.module.css";
+import PhotoDetails from "@/app/[albumName]/[fileName]/PhotoDetails";
+import NavigationHelp from "@/app/[albumName]/[fileName]/NavigationHelp";
 
 interface Props {
   albumName: string;
@@ -50,10 +52,8 @@ export default function Photo({ albumName, album, initialFileName }: Props) {
         fill
         priority
       />
-      <div className={styles.PhotoDetails}>
-        <Counter showAfter={FADE_IN_DURATION} counter={currentIndex + 1} total={album.length} />
-        <button onClick={showNextPhoto}>next</button>
-        <button onClick={showPreviousPhoto}>previous</button>
-      </div>
+      <NavigationHelp hideAfter={FADE_IN_DURATION} />
+      <Counter showAfter={FADE_IN_DURATION} counter={currentIndex + 1} total={album.length} />
+      <PhotoDetails showAfter={FADE_IN_DURATION} {...photoItem} />
     </div>)
 };
