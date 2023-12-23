@@ -1,7 +1,7 @@
 .PhotoContainer {
-
+  position: relative;
+  height: 100%;
 }
-
 
 .Photo {
   object-fit: contain;
