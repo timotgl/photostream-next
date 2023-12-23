@@ -13,6 +13,7 @@ import NavigationHelp from './NavigationHelp';
 import useArrowKeyNavigation from './navigation/useArrowKeyNavigation';
 import useWheelNavigation from './navigation/useWheelNavigation';
 import useClickNavigation from './navigation/useClickNavigation';
+import useTouchNavigation from './navigation/useTouchNavigation';
 
 interface Props {
   albumName: string;
@@ -48,6 +49,7 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
   useArrowKeyNavigation(showPreviousPhoto, showNextPhoto);
   useWheelNavigation(showPreviousPhoto, showNextPhoto);
   useClickNavigation(showPreviousPhoto, showNextPhoto);
+  useTouchNavigation(showPreviousPhoto, showNextPhoto);
 
   useEffect(() => {
     window.history.pushState({ albumName, fileName: photoItem.file }, '', `/${albumName}/${photoItem.file}`)
