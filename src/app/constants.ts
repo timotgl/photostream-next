@@ -14,3 +14,6 @@ export const FADE_IN_DURATION = 3000;
 // PHOTO_WIDTH = window.screen.width * window.devicePixelRatio >= PHOTO_WIDTH_HD ? PHOTO_WIDTH_4K : PHOTO_WIDTH_HD,
 export const PHOTO_WIDTH_HD = 1920;
 export const PHOTO_WIDTH_4K = 3840;
+
+// Will be added to the page title whenever a new photo item is rendered.
+export const PAGE_TITLE_SUFFIX = ' - Photo by Timo Taglieber';

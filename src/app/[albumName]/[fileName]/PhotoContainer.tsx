@@ -4,7 +4,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
 import type { PhotoItem} from '../interfaces';
-import {BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K} from '../../constants';
+import { BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K } from '../../constants';
 import Counter from './Counter';
 
 import styles from './PhotoContainer.module.css';
@@ -14,6 +14,7 @@ import useArrowKeyNavigation from './navigation/useArrowKeyNavigation';
 import useWheelNavigation from './navigation/useWheelNavigation';
 import useClickNavigation from './navigation/useClickNavigation';
 import useTouchNavigation from './navigation/useTouchNavigation';
+import formatPageTitle from '../../../lib/formatPageTitle';
 
 interface Props {
   albumName: string;
@@ -50,6 +51,10 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
   useWheelNavigation(showPreviousPhoto, showNextPhoto);
   useClickNavigation(showPreviousPhoto, showNextPhoto);
   useTouchNavigation(showPreviousPhoto, showNextPhoto);
+
+  useEffect(() => {
+    document.title = formatPageTitle(photoItem.title);
+  }, [photoItem.title])
 
   useEffect(() => {
     window.history.pushState({ albumName, fileName: photoItem.file }, '', `/${albumName}/${photoItem.file}`)
