@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import fetchAlbum from '../fetchAlbum';
-import InteractivePhoto from './PhotoContainer';
+import PhotoContainer from './PhotoContainer';
 
 interface PhotoRouteParams {
   albumName: string;
@@ -24,6 +24,6 @@ export async function generateMetadata(
 export default async function Photo({ params: { albumName, fileName } }: { params: PhotoRouteParams}) {
   const photos = await fetchAlbum(albumName);
   return (
-    <InteractivePhoto albumName={albumName} album={photos} initialFileName={fileName} />
+    <PhotoContainer albumName={albumName} album={photos} initialFileName={fileName} />
   );
 }
