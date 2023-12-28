@@ -65,8 +65,8 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
         fill
         priority
       />
-      <NavigationHelp hideAfter={FADE_IN_DURATION} />
       <Counter showAfter={FADE_IN_DURATION} counter={currentIndex + 1} total={album.length} />
       <PhotoDetails showAfter={FADE_IN_DURATION} {...photoItem} />
+      <NavigationHelp hideAfter={FADE_IN_DURATION} />
     </div>)
 };
