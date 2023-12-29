@@ -4,7 +4,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
 import type { PhotoItem} from '../interfaces';
-import { BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH_4K } from '../../constants';
+import { BASE_URL, FADE_IN_DURATION, PHOTO_WIDTH } from '../../constants';
 import Counter from './Counter';
 
 import styles from './PhotoContainer.module.css';
@@ -33,9 +33,7 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
   useEffect(showLoadingIndicator, [currentIndex]);
 
   const photoItem = album[currentIndex];
-
-  // TODO: derive screen width from user agent header with Next.js middleware
-  const currentPhotoUrl = `${BASE_URL}/${albumName}/${PHOTO_WIDTH_4K}/${photoItem.file}`;
+  const currentPhotoUrl = `${BASE_URL}/${albumName}/${PHOTO_WIDTH}/${photoItem.file}`;
 
   const showNextPhoto = useCallback(() => {
     if (currentIndex === 0 ) {
