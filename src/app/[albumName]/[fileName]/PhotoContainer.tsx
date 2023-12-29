@@ -10,6 +10,7 @@ import Counter from './Counter';
 import styles from './PhotoContainer.module.css';
 import PhotoDetails from './PhotoDetails';
 import NavigationHelp from './NavigationHelp';
+import PhotoLoadingIndicator from './PhotoLoadingIndicator';
 import useArrowKeyNavigation from './navigation/useArrowKeyNavigation';
 import useWheelNavigation from './navigation/useWheelNavigation';
 import useClickNavigation from './navigation/useClickNavigation';
@@ -20,11 +21,16 @@ interface Props {
   albumName: string;
   album: Array<PhotoItem>;
   initialFileName: string;
-};
+}
 
 export default function PhotoContainer({ albumName, album, initialFileName }: Props) {
   const initialIndex = album.findIndex(item => item.file === initialFileName);
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [currentIndex, setCurrentIndex] = useState<number>(initialIndex);
+
+  const [isPhotoLoading, setIsPhotoLoading] = useState<boolean>(true);
+  const hideLoadingIndicator = () => setIsPhotoLoading(false);
+  const showLoadingIndicator = () => setIsPhotoLoading(true);
+  useEffect(showLoadingIndicator, [currentIndex]);
 
   const photoItem = album[currentIndex];
 
@@ -69,7 +75,10 @@ export default function PhotoContainer({ albumName, album, initialFileName }: Pr
         alt={photoItem?.title || ''}
         fill
         priority
+        key={photoItem.file}
+        onLoad={hideLoadingIndicator}
       />
+      {isPhotoLoading && <PhotoLoadingIndicator />}
       <Counter showAfter={FADE_IN_DURATION} counter={currentIndex + 1} total={album.length} />
       <PhotoDetails showAfter={FADE_IN_DURATION} {...photoItem} />
       <NavigationHelp hideAfter={FADE_IN_DURATION} />
