@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Photostream Next
 
-## Getting Started
+![Screenshot of app](public/screenshot.png 'Screenshot of app')
 
-First, run the development server:
+A photo gallery JavaScript app built with Next.js 14, React, and Typescript. Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This project is based on https://github.com/timotgl/photostream, which is the same photo gallery but as a single page app with React/Redux/Typescript.
+
+Hosted at https://timotgl-photostream.vercel.app.
+
+## Installation
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deployment to Vercel
 
-## Learn More
+Simply push new commits to the `main` branch on GitHub.
 
-To learn more about Next.js, take a look at the following resources:
+## Questions and answers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Why Next.js stack for such a simple app?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I'm using this project as a learning playground for frontend stuff. It works better for me to have an actual use case when doing that (hosting my own photos).
