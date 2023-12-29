@@ -26,6 +26,6 @@ Simply push new commits to the `main` branch on GitHub.
 
 ## Questions and answers
 
-### Why Next.js stack for such a simple app?
+### Why Next.js for such a simple app?
 
-I'm using this project as a learning playground for frontend stuff. It works better for me to have an actual use case when doing that (hosting my own photos).
+I'm using this project as a learning playground. It works better for me to have an actual use case when doing that (hosting my own photos).
